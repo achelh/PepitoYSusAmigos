@@ -4,12 +4,12 @@ public class MissDanger extends Personatge {
 
     public MissDanger(String nom, Equip equip) {
         super(nom, equip);
-        this.mal = Dau.tirar(30);
+        this.mal = (int)(Math.random() * 30) + 1;
         this.invulnerableProximAtac = false;
     }
 
     @Override
-    public void atacar(Personatge oponent) {
+    public void ferAccio(Personatge oponent) {
         if (esViu()) {
             atacarAmbMal(oponent, mal);
         }
