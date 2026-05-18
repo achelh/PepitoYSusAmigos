@@ -4,27 +4,40 @@ public class Arquer extends Personatge {
     private int fletxes;
     private int rondesPendentsPerFabricar;
 
-    public Arquer(String nom) {
-        super(nom);
+    public Arquer(String nom, Equip equip) {
+        super(nom, equip);
         fletxes = FLETXES_INICIALS;
         rondesPendentsPerFabricar = 0;
     }
 
+    // TO DO: Repensar aquest mètode, ja que no sempre ataca.
     @Override
     public void atacar(Personatge oponent) {
-        if (fletxes > 0) {
+        if (potAtacar()) {
             int mal = Dau.tirar(20) + 20;
             atacarAmbMal(oponent, mal);
             fletxes--;
-            if (fletxes<0) {
-                rondesPendentsPerFabricar = RONDES_PER_FABRICAR;
+            if (fletxes<=0) {
+                comencarAFabricar();
             }
         }
         else {
-            rondesPendentsPerFabricar--;
-            if (rondesPendentsPerFabricar == 0) {
-                fletxes = FLETXES_INICIALS;
-            }
+            fabricar();
+        }
+    }
+
+    private boolean potAtacar() {
+        return fletxes > 0;
+    }
+
+    private void comencarAFabricar() {
+        rondesPendentsPerFabricar = RONDES_PER_FABRICAR;
+    }
+
+    private void fabricar() {
+        rondesPendentsPerFabricar--;
+        if (rondesPendentsPerFabricar == 0) {
+            fletxes = FLETXES_INICIALS;
         }
     }
 }

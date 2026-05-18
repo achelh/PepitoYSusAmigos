@@ -1,33 +1,44 @@
+import java.util.ArrayList;
+
 public abstract class Personatge {
     private String nom;
     private final int VIDA_INICIAL = 100;
     private boolean estaViu;
     private int vidaActual;
     private int malFet;
+    private Equip equip;
 
-    public Personatge(String nom) {
+    public Personatge(String nom, Equip equip) {
         this.nom = nom;
         estaViu = true;
         vidaActual = VIDA_INICIAL;
         malFet = 0;
+        this.equip = equip;
+    }
+
+    public void torn(Combatents combatents) {
+        ArrayList<Personatge> oponents = combatents.obtenirPersonatges();
+        Personatge oponent = UI.escollirOponent(this, oponents);
+        atacar(oponent);
     }
 
     abstract public void atacar(Personatge oponent);
 
     protected void atacarAmbMal(Personatge oponent, int mal) {
         if (estaViu) {
+            UI.mostrarFerAtac(this, oponent, mal);
             oponent.rebreMal(mal);
+            malFet = malFet + mal;
         }
-        System.out.println(this + " ataca a " + oponent + " i li llança " + mal + " punts de mal");
     }
 
     public void rebreMal(int mal) {
-        vidaActual = vidaActual - mal;
-        System.out.println(this + " ha estat atacat, ara té " + vidaActual + " de vida.");
-        System.out.println();
-        if (vidaActual <=0) {
-            estaViu = false;
-            System.out.println(this + " ha mort.");
+        if (estaViu) {
+            vidaActual = vidaActual - mal;
+            if (vidaActual <=0) {
+                estaViu = false;
+            }
+            UI.mostrarRebreAtac(this, vidaActual, estaViu);
         }
     }
 
@@ -43,7 +54,20 @@ public abstract class Personatge {
         return malFet;
     }
 
-    public String toString() {
+    public String getVidaOMort() {
+        if (estaViu) {
+            return "vida " + Integer.toString(vidaActual);
+        }
+        else {
+            return("mort");
+        }
+    }
+
+    public String getNom() {
         return nom;
+    }
+
+    public Equip getEquip() {
+        return equip;
     }
 }
