@@ -34,4 +34,8 @@ public class Combatents {
         }
         return equipsVius;
     }
+
+    public void fi() {
+        UI.mostrarFi(obtenirPersonatges());
+    }
 }

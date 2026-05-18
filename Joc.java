@@ -7,6 +7,7 @@ public class Joc {
         while (combatents.equipsAmbVius() > 1) {
             combatents.torn();
         }
+        combatents.fi();
     }
 
     public void crearEquips() {
