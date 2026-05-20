@@ -15,6 +15,6 @@ public class Joc {
         //combatents.afegir(new EquipArquerIGuerrer("Mixt"));
         combatents.afegir(new EquipDavant("Davant"));
         combatents.afegir(new EquipDarrera("Darrera"));
-        combatents.afegir(new EquipCurandera("Sanadors"));
+        combatents.afegir(new EquipCurandera("Sanadors y verinador"));
     }
 }
