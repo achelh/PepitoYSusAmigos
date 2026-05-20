@@ -63,6 +63,16 @@ public abstract class Personatge {
         }
     }
 
+    public void curar(int quantitat) {
+        if (estaViu) {
+            vidaActual += quantitat;
+            if (vidaActual > 100) {
+                vidaActual = 100;
+            }
+            System.out.println(nom + " ara té " + vidaActual + " de vida.");
+        }
+    }
+
     public String getNom() {
         return nom;
     }

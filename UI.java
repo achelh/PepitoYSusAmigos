@@ -38,4 +38,19 @@ public class UI {
         mostrarPersonatgesIVida(personatges);
         System.out.println("Gràcies per jugar.");
     }
+    public static int escollirAccioCurandera(Personatge origen, Personatge objectiu) {
+        System.out.println(origen.getNom() + ", què vols fer amb " + objectiu.getNom() + "?");
+        System.out.println("1. Curar");
+        System.out.println("2. Atacar");
+
+        return entrada.nextInt();
+    }
+
+    public static void mostrarCura(Personatge curador, Personatge elquetris, int quantitat) {
+        System.out.println(curador.getNom() + " cura a " + elquetris.getNom() + " +" + quantitat + " vida");
+    }
+
+    public static void mostrarVeri(Personatge origen, Personatge elquetris, int mal) {
+        System.out.println(elquetris.getNom() + " rep " + mal + " de mal per verí de " + origen.getNom());
+    }
 }
